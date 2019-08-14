@@ -44,10 +44,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-current_player = Player("outside")
-print(current_player)
+current_player = Player(room["outside"])
+print(current_player.location)
 
-user_input = input("Pick a cardinal direction -- n, s, e, w. Press q to quit.")
 # Write a loop that:
 #
 # * Prints the current room name
@@ -59,17 +58,21 @@ user_input = input("Pick a cardinal direction -- n, s, e, w. Press q to quit.")
 #
 # If the user enters "q", quit the game.
 
-while user_input != "q":
-    if user_input == "n":
-        print(user_input)
+while True:
+    print(f"player is in {current_player.location.name}")
+    print(current_player.location.name)
+    user_input = input(
+        "Pick a cardinal direction -- n, s, e, w. Press q to quit.").lower()
 
-    elif user_input == "s":
-        print(user_input)
-    elif user_input == "e":
-        print(user_input)
-    elif user_input == "w":
-        print(user_input)
+    if user_input == 'n' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
+        current_player.location = current_player.location.n_to
+    elif user_input == 's' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Outside Cave Entrance':
+        current_player.location = current_player.location.s_to
+    elif user_input == 'e' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Treasure Chamber' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Outside Cave Entrance':
+        current_player.location = current_player.location.e_to
+    elif user_input == 'w' and current_player.location.name != 'Foyer' and current_player.location.name != 'Outside Cave Entrance' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
+        current_player.location = current_player.location.w_to
+    elif user_input == 'q':
+        print("Game Over!")
     else:
-        print(
-            "Please choose a valid option: n, s, w, or e to move or q to quit."
-        )
+        print("Please enter a valid direction (n, s, e, w) or q to quit")
