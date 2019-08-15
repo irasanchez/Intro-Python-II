@@ -1,9 +1,10 @@
 #from file import function
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
-
+# this is as far as I get so far, I need to pass in the item_name and description here
 room = {
     'outside':
     Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
@@ -45,7 +46,6 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 name = input("What is your name?")
 current_player = Player(name, room["outside"])
-print(current_player.location)
 
 # Write a loop that:
 #
@@ -59,8 +59,8 @@ print(current_player.location)
 # If the user enters "q", quit the game.
 
 while True:
-    print(f"player is in {current_player.location.name}")
-    print(current_player.location.name)
+    print(f"You are in {current_player.location}")
+
     user_input = input(
         "Pick a cardinal direction -- n, s, e, w. Press q to quit.").lower()
 
