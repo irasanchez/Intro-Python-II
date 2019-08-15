@@ -7,7 +7,10 @@ from item import Item
 # this is as far as I get so far, I need to pass in the item_name and description here
 room = {
     'outside':
-    Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    Room("Outside Cave Entrance", "North of you, the cave mount beckons", [
+        Item("coins", "2 gold coins"),
+        Item("sword", "like a knife but bigger")
+    ]),
     'foyer':
     Room(
         "Foyer", """Dim light filters in from the south. Dusty
@@ -16,16 +19,19 @@ passages run north and east."""),
     Room(
         "Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+        Item("coins", "10 gold coins")),
     'narrow':
     Room(
         "Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+        Item("bread", "comfort food")),
     'treasure':
     Room(
         "Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+        Item("treasure", "a treasure chest full of gold")),
 }
 
 # Link rooms together
@@ -44,7 +50,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-name = input("What is your name?")
+name = input(
+    "Welcome to my adventure game. Your job is to go through the maze and see what you can find. \n\nBut first, what is your name?\n"
+)
 current_player = Player(name, room["outside"])
 
 # Write a loop that:
@@ -62,7 +70,8 @@ while True:
     print(f"You are in {current_player.location}")
 
     user_input = input(
-        "Pick a cardinal direction -- n, s, e, w. Press q to quit.").lower()
+        "Pick a cardinal direction -- n, s, e, w. Press q to quit. \n").lower(
+        )
 
     if user_input == 'n' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
         current_player.location = current_player.location.n_to
