@@ -21,11 +21,12 @@ class Room:
         self.items = items
 
     def __str__(self):
+        output = '{self.name}: {self.description}'.format(self=self)
         if not self.items:
             return "{self.name}: {self.description} \n There are no items here \n".format(
                 self=self)
-        output = '{self.name}: {self.description}\n\nItems available here: \n'.format(
-            self=self)
-        for item in self.items:
-            output += f"{item} \n"
+        else:
+            output += "\n\nItems available here: \n"
+            for item in self.items:
+                output += f"{item.name}: {item.description} \n"
         return output

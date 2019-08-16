@@ -20,18 +20,18 @@ passages run north and east."""),
         "Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-        Item("coins", "10 gold coins")),
+        [Item("coins", "10 gold coins")]),
     'narrow':
     Room(
         "Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
-        Item("bread", "comfort food")),
+        [Item("bread", "comfort food")]),
     'treasure':
     Room(
         "Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-        Item("treasure", "a treasure chest full of gold")),
+        [Item("treasure", "a treasure chest full of gold")]),
 }
 
 # Link rooms together
@@ -53,7 +53,7 @@ room['treasure'].s_to = room['narrow']
 name = input(
     "Welcome to my adventure game. Your job is to go through the maze and see what you can find. \n\nBut first, what is your name?\n"
 )
-print(name)
+
 current_player = Player(name, room["outside"])
 # ^name is storing the input value, but Player isn't printing it.
 # Where does name get lost, on line 57 here or in player.py?
@@ -70,12 +70,12 @@ current_player = Player(name, room["outside"])
 # If the user enters "q", quit the game.
 
 while True:
-    print(f"{current_player}")
+    print(f"***********\n{current_player}\n***********")
 
     user_input = input(
         "Pick a cardinal direction -- n, s, e, w. Press q to quit. \n").lower(
         )
-    print(len(user_input.split(" ")))
+
     if len(user_input.split(" ")) == 1:
         if user_input == 'n' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
             current_player.location = current_player.location.n_to
@@ -90,7 +90,11 @@ while True:
         else:
             print("Please enter a valid direction (n, s, e, w) or q to quit")
     else:
-        if user_input.split(" ")[0] != "grab":
+        if user_input.split(" ")[0] != "get" or user_input.split(
+                " ")[0] != "take":
             print(
-                "Please enter a valid direction or action. \n\nMove with n, s, e, w. \n\nPick up an item by entering: grab -insert item name- \n\nOr enter q to quit."
+                "Please enter a valid direction or action. \n\nMove with n, s, e, w. \n\nPick up an item by entering: get/take item_name \n\nOr enter q to quit."
             )
+        else:
+            print("Then, I will check the room to see if the items are there.")
+            print(current_player.location.items)
