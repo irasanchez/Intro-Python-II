@@ -53,35 +53,44 @@ room['treasure'].s_to = room['narrow']
 name = input(
     "Welcome to my adventure game. Your job is to go through the maze and see what you can find. \n\nBut first, what is your name?\n"
 )
+print(name)
 current_player = Player(name, room["outside"])
+# ^name is storing the input value, but Player isn't printing it.
+# Where does name get lost, on line 57 here or in player.py?
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+#//this svg is not working. not sure why. may just want to use FontAwesome library
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
 while True:
-    print(f"You are in {current_player.location}")
+    print(f"{current_player}")
 
     user_input = input(
         "Pick a cardinal direction -- n, s, e, w. Press q to quit. \n").lower(
         )
-
-    if user_input == 'n' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
-        current_player.location = current_player.location.n_to
-    elif user_input == 's' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Outside Cave Entrance':
-        current_player.location = current_player.location.s_to
-    elif user_input == 'e' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Treasure Chamber' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Outside Cave Entrance':
-        current_player.location = current_player.location.e_to
-    elif user_input == 'w' and current_player.location.name != 'Foyer' and current_player.location.name != 'Outside Cave Entrance' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
-        current_player.location = current_player.location.w_to
-    elif user_input == 'q':
-        print("Game Over!")
+    print(len(user_input.split(" ")))
+    if len(user_input.split(" ")) == 1:
+        if user_input == 'n' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
+            current_player.location = current_player.location.n_to
+        elif user_input == 's' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Outside Cave Entrance':
+            current_player.location = current_player.location.s_to
+        elif user_input == 'e' and current_player.location.name != 'Narrow Passage' and current_player.location.name != 'Treasure Chamber' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Outside Cave Entrance':
+            current_player.location = current_player.location.e_to
+        elif user_input == 'w' and current_player.location.name != 'Foyer' and current_player.location.name != 'Outside Cave Entrance' and current_player.location.name != 'Grand Overlook' and current_player.location.name != 'Treasure Chamber':
+            current_player.location = current_player.location.w_to
+        elif user_input == 'q':
+            print("Game Over!")
+        else:
+            print("Please enter a valid direction (n, s, e, w) or q to quit")
     else:
-        print("Please enter a valid direction (n, s, e, w) or q to quit")
+        if user_input.split(" ")[0] != "grab":
+            print(
+                "Please enter a valid direction or action. \n\nMove with n, s, e, w. \n\nPick up an item by entering: grab -insert item name- \n\nOr enter q to quit."
+            )

@@ -3,10 +3,11 @@
 
 
 class Player:
-    def __init__(self, name, location, items=None):
+    def __init__(self, name, location, inventory=None):
         self.location = location
         self.name = ""
-        self.items = items
+        self.inventory = inventory
 
     def __str__(self):
-        return 'I am in {self.location}'.format(self=self)
+        return 'Name: {self.name}.\nLocation: {self.location}\nInventory: {self.inventory}'.format(
+            self=self)
