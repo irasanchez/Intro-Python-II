@@ -1,6 +1,7 @@
 from room import Room
 
 # Declare all the rooms
+# room is an object with keys representing each area where the value is an instance of the Room class.
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -23,7 +24,8 @@ earlier adventurers. The only exit is to the south."""),
 
 
 # Link rooms together
-
+# saves an area (instance of Room class) into a variable in another area
+# this tells us that printing Outside's n_to value will give us Foyer on line 29
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
