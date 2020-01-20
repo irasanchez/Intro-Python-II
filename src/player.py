@@ -5,13 +5,13 @@
 class Player:
     """this class creates objects that represent the user"""
 
-    def __init__(self, name, location):
+    def __init__(self, name, current_room):
         self.name = name
-        self.location = location
+        self.current_room = current_room
 
     def __str__(self):
-        return f"Hi, I am {self.name}."
+        return f"Hi, I am {self.name}, and I am in the {self.current_room} area of the room."
 
     def report_back(self):
-        return f"I am in {self.location}."
+        return f"\n\nI see I am in the {self.current_room} area of the room."
 

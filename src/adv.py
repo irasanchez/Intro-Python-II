@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 # room is an object with keys representing each area where the value is an instance of the Room class.
@@ -40,14 +41,42 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room. ✅
+print("Welcome to my adventure game!")
+name = input("I am a computer. What is your name?\n").lower().capitalize()
+print(f"Hi, {name.strip()}. It's a pleasure to meet you.")
+print(f"Alright, I am going to make a new player for you to play as.")
+player = Player(name, "outside")
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+playing_prompt = input("All done. Ready to play? [Y]es or [N]o\n").lower()
+
+if playing_prompt == "y":
+    playing = True
+    print("Sweet! Let us begin... MWAHAHAHAHAHAH!")
+elif playing_prompt == "n":
+    playing = False
+    print("Okay, maybe next time!")
+
+while playing:
+    # * Prints the current room name
+    print(player.report_back())
+    # * Prints the current description (the textwrap module might be useful here).
+
+    user_action = input("Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower()
+
+    if user_action == "q":
+        # If the user enters "q", quit the game.
+        print("Thanks for playing! See you next time.")
+        playing = False
+    elif user_action == "n":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        print("something")
+    elif user_action == "s":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        print("something")
+    elif user_action == "e":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        print("something")
+    elif user_action == "w":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        print("something")
+    else: print("Please input an acceptable response to continue.")
