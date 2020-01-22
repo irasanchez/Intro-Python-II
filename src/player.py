@@ -13,5 +13,5 @@ class Player:
         return f"Hi, I am {self.name}, and I am in the {self.current_room} area of the room."
 
     def report_back(self):
-        return f"\n\nI see I am in the {self.current_room} area of the room."
+        return self.current_room
 
