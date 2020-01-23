@@ -7,8 +7,7 @@ room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filter# room is an object with keys representing each area where the value is an instance of the Room class.
-s in from the south. Dusty
+    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
@@ -76,6 +75,8 @@ while playing:
         # check if n_to is there
         if player.current_room.n_to is not None:
             player.current_room = player.current_room.n_to
+        else:
+            print("This is a dead end. Try again.")
     elif user_action == "s":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if s_to is there
@@ -86,9 +87,13 @@ while playing:
         # check if e_to is there
         if player.current_room.e_to is not None:
             player.current_room = player.current_room.e_to
+        else:
+            print("This is a dead end. Try again.")
     elif user_action == "w":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if w_to is there
         if player.current_room.w_to is not None:
             player.current_room = player.current_room.w_to
+        else:
+            print("This is a dead end. Try again.")
     else: print("Please input an acceptable response to continue.")
