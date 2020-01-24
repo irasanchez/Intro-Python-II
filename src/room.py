@@ -14,4 +14,4 @@ class Room:
         self.w_to = w_to
 
     def __str__(self):
-        return f"{self.name}: {self.description} \n N leads to: \n{type(self.n_to)}"
+        return f"{self.name}: {self.description}"

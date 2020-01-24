@@ -82,6 +82,8 @@ while playing:
         # check if s_to is there
         if player.current_room.s_to is not None:
             player.current_room = player.current_room.s_to
+        else:
+            print("This is a dead end. Try again.")
     elif user_action == "e":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if e_to is there
