@@ -5,9 +5,10 @@
 class Player:
     """this class creates objects that represent the user"""
 
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, inventory=[]):
         self.name = name
         self.current_room = current_room
+        self.inventory = inventory
 
     def __str__(self):
         return f"Hi, I am {self.name}, and I am in the {self.current_room} area of the room."
