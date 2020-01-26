@@ -4,7 +4,9 @@ from item import Item
 
 items = {
     "dagger": Item("Dagger", "A pointy, stabby thing"),
-    "mint" : Item("A complimentary mint", "Peppermint!")
+    "mint": Item("A complimentary mint", "Peppermint!"),
+    "lipstick": Item("Lipstick", "I feel prettyyy!! Oh so prettyyy!!"),
+    "mirror": Item("Mirror of Morbidity", "We all die some day...")
 }
 
 # Declare all the rooms
@@ -12,21 +14,10 @@ items = {
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", [items["dagger"], items["mint"]]),
-
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east."""),
+    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [items["mirror"]]),
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
+    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""", [items["lipstick"]]),
 }
 
 
@@ -71,7 +62,8 @@ while playing:
     # Prints the current room name
     print("\n\n", player.report_back())
     # Prints the current description (the textwrap module might be useful here).
-    user_action = input("Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower()
+    user_action = input(
+        "Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower()
 
     if user_action == "q":
         # If the user enters "q", quit the game.
@@ -105,4 +97,5 @@ while playing:
             player.current_room = player.current_room.w_to
         else:
             print("This is a dead end. Try again.")
-    else: print("Please input an acceptable response to continue.")
+    else:
+        print("Please input an acceptable response to continue.")
