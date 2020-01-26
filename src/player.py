@@ -3,7 +3,7 @@
 
 
 class Player:
-    """this class creates objects that represent the user"""
+    """I am a class that creates the user's player in this game"""
 
     def __init__(self, name, current_room, inventory=[]):
         self.name = name
@@ -15,4 +15,3 @@ class Player:
 
     def report_back(self):
         return self.current_room
-
