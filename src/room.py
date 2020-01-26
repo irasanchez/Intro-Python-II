@@ -16,7 +16,8 @@ class Room:
 
     def __str__(self):
         base_string = f"{self.name}: {self.description}"
-        base_string += "\n\nYou see the following items:"
-        for item in self.items:
-            base_string += item.name
+        if len(self.items) is not 0:
+            base_string += "\n\nYou see the following items:"
+            for item in self.items:
+                base_string += item.name
         return base_string
