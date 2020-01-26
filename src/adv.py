@@ -6,7 +6,7 @@ items = {
     "dagger": Item("Dagger", "A pointy, stabby thing"),
     "mint": Item("A complimentary mint", "Peppermint!"),
     "lipstick": Item("Lipstick", "I feel prettyyy!! Oh so prettyyy!!"),
-    "mirror": Item("Mirror of Morbidity", "We all die some day...")
+    "mirror": Item("Mirror", "The Mirror  of Morbidity, specifically... We all die some day...")
 }
 
 # Declare all the rooms
