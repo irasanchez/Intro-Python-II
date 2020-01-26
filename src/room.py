@@ -17,7 +17,9 @@ class Room:
     def __str__(self):
         base_string = f"{self.name}: {self.description}"
         if len(self.items) is not 0:
-            base_string += "\n\nYou see the following items:\n"
+            base_string += "\n\n👀\nYou see the following items:\n"
             for item in self.items:
                 base_string += f"{item.name}: {item.description}\n"
+
+            base_string += "\n\nTo pick up an item, add its name to the your command: 'n mirror'."
         return base_string

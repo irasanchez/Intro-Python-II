@@ -43,20 +43,21 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room. ✅
-print("Welcome to my adventure game!")
-name = input("I am a computer. What is your name?\n").lower().capitalize()
-print(f"Hi, {name.strip()}. It's a pleasure to meet you.")
-print(f"Alright, I am going to make a new player for you to play as.")
+name = input(
+    "\n(͡° ͜ʖ ͡°)\nWelcome to my adventure game! \nI am a computer. What is your name?\n").lower().capitalize()
+print(f"\n(͡° ͜ʖ ͡°)\nHi, {name.strip()}. It's a pleasure to meet you. Alright, I am going to make a new player for you to play as:\n\n\t\t(ง︡'-'︠)ง <= (that's you)\n\nWowwwww you look so cool!")
+
 player = Player(name, room["outside"])
 
-playing_prompt = input("All done. Ready to play? [Y]es or [N]o\n").lower()
+playing_prompt = input(
+    "Ready to play? [Y]es or [N]o").lower()
 
 if playing_prompt == "y":
     playing = True
-    print("Sweet! Let us begin... MWAHAHAHAHAHAH!")
+    print("\n(͡° ͜ʖ ͡°)\nSweet! Let us begin... MWAHAHAHAHAHAH!")
 elif playing_prompt == "n":
     playing = False
-    print("Okay, maybe next time!")
+    print("\n(͡° ͜ʖ ͡°)\nOkay, maybe next time!")
 
 while playing:
     # Prints the current room name
