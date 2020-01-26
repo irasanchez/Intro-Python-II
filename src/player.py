@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import Item
 
 
 class Player:
@@ -15,3 +16,6 @@ class Player:
 
     def report_back(self):
         return self.current_room
+
+    def pick_up(self, item_name, item_description):
+        self.inventory.append(Item(item_name, item_description))
