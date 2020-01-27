@@ -12,10 +12,12 @@ class Player:
         self.inventory = inventory
 
     def __str__(self):
-        return f"Hi, I am {self.name}, and I am in the {self.current_room} area of the room."
+        return f"Hi, I am {self.name}, and I am located {self.current_room}."
 
     def report_back(self):
-        return self.current_room
+        return "▶▶▶ You are here: " + str(self.current_room)
 
-    def pick_up(self, item_name, item_description):
-        self.inventory.append(Item(item_name, item_description))
+    def pick_up(self, item):
+        self.inventory.append(Item(item.name, item.description))
+        print(f"\n(͡° ͜ʖ ͡°)\n\nPicked up {item.name}.")
+        self.current_room.items.remove(item)

@@ -21,5 +21,5 @@ class Room:
             for item in self.items:
                 base_string += f"{item.name}: {item.description}\n"
 
-            base_string += "\n\nTo pick up an item, add its name to the your command: 'n mirror'."
+            base_string += "\n\nTo pick up an item, add its name to your command. 'n mirror' will go North and pick up the mirror."
         return base_string

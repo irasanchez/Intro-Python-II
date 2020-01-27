@@ -4,7 +4,7 @@ from item import Item
 
 items = {
     "dagger": Item("Dagger", "A pointy, stabby thing"),
-    "mint": Item("A complimentary mint", "Peppermint!"),
+    "mint": Item("Mint", "A complimentary mint. And, it's peppermint!"),
     "lipstick": Item("Lipstick", "I feel prettyyy!! Oh so prettyyy!!"),
     "mirror": Item("Mirror", "The Mirror  of Morbidity, specifically... We all die some day...")
 }
@@ -13,7 +13,7 @@ items = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [items["dagger"], items["mint"]]),
+                     "North of you, the cave mount beckons", [items["dagger"]]),
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east."""),
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [items["mirror"]]),
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
@@ -47,10 +47,10 @@ name = input(
     "\n(͡° ͜ʖ ͡°)\nWelcome to my adventure game! \nI am a computer. What is your name?\n").lower().capitalize()
 print(f"\n(͡° ͜ʖ ͡°)\nHi, {name.strip()}. It's a pleasure to meet you. Alright, I am going to make a new player for you to play as:\n\n\t\t(ง︡'-'︠)ง <= (that's you)\n\nWowwwww you look so cool!")
 
-player = Player(name, room["outside"])
+player = Player(name, room["outside"], [Item("Rubber Chicken", "Useless...")])
 
 playing_prompt = input(
-    "Ready to play? [Y]es or [N]o").lower()
+    "Ready to play? [Y]es or [N]o\n").lower()
 
 if playing_prompt == "y":
     playing = True
@@ -64,34 +64,52 @@ while playing:
     print("\n\n", player.report_back())
     # Prints the current description (the textwrap module might be useful here).
     user_action = input(
-        "Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower()
+        "Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower().split(" ")
+    direction = ""
+    desired_items = []
 
-    if user_action == "q":
+    if len(user_action) > 1:
+        direction += user_action[0]
+        desired_items.extend(user_action[1:])
+        # add items to the player's inventory
+        for desired_item in desired_items:
+            if desired_item in items:
+                player.pick_up(items[f"{desired_item}"])
+            else:
+                print(
+                    f"\n\n\n(╥︣﹏᷅╥) ⚠ Oops! {desired_item.capitalize()} is not here.")
+                # make direction invalid to give user another chance to pick up the item
+                direction = ""
+    elif len(user_action) == 1:
+        direction += user_action[0]
+
+    # go where the user wants
+    if direction == "q":
         # If the user enters "q", quit the game.
         print("Thanks for playing! See you next time.")
         playing = False
-    elif user_action == "n":
+    elif direction == "n":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if n_to is there
         if player.current_room.n_to is not None:
             player.current_room = player.current_room.n_to
         else:
             print("This is a dead end. Try again.")
-    elif user_action == "s":
+    elif direction == "s":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if s_to is there
         if player.current_room.s_to is not None:
             player.current_room = player.current_room.s_to
         else:
             print("This is a dead end. Try again.")
-    elif user_action == "e":
+    elif direction == "e":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if e_to is there
         if player.current_room.e_to is not None:
             player.current_room = player.current_room.e_to
         else:
             print("This is a dead end. Try again.")
-    elif user_action == "w":
+    elif direction == "w":
         # If the user enters a cardinal direction, attempt to move to the room there.
         # check if w_to is there
         if player.current_room.w_to is not None:
