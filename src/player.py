@@ -21,3 +21,9 @@ class Player:
         self.inventory.append(Item(item.name, item.description))
         print(f"\n(͡° ͜ʖ ͡°)\n\nPicked up {item.name}.")
         self.current_room.items.remove(item)
+
+    def drop(self, item_to_drop):
+        for item in self.inventory:
+            if item.name.lower() == item_to_drop:
+                self.inventory.remove(item)
+                print(f"\n(͡° ͜ʖ ͡°)\n\nDropped {item.name}.")

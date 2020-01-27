@@ -65,11 +65,44 @@ while playing:
     # Prints the current description (the textwrap module might be useful here).
     user_action = input(
         "Where would you like to go?\n[N]orth, [S]outh, [E]ast, [W]est, or [Q]uit\n").lower().split(" ")
-    direction = ""
     desired_items = []
+    undesired_items = []
 
-    if len(user_action) > 1:
-        direction += user_action[0]
+    # go where the user wants
+    if user_action[0] == "q":
+        # If the user enters "q", quit the game.
+        print("Thanks for playing! See you next time.")
+        playing = False
+    elif user_action[0] == "n":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # check if n_to is there
+        if player.current_room.n_to is not None:
+            player.current_room = player.current_room.n_to
+        else:
+            print("This is a dead end. Try again.")
+    elif user_action[0] == "s":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # check if s_to is there
+        if player.current_room.s_to is not None:
+            player.current_room = player.current_room.s_to
+        else:
+            print("This is a dead end. Try again.")
+    elif user_action[0] == "e":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # check if e_to is there
+        if player.current_room.e_to is not None:
+            player.current_room = player.current_room.e_to
+        else:
+            print("This is a dead end. Try again.")
+    elif user_action[0] == "w":
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # check if w_to is there
+        if player.current_room.w_to is not None:
+            player.current_room = player.current_room.w_to
+        else:
+            print("This is a dead end. Try again.")
+    # if the user wants to pick up an item
+    elif user_action[0] == "get":
         desired_items.extend(user_action[1:])
         # add items to the player's inventory
         for desired_item in desired_items:
@@ -79,42 +112,10 @@ while playing:
                 print(
                     f"\n\n\n(╥︣﹏᷅╥) ⚠ Oops! {desired_item.capitalize()} is not here.")
                 # make direction invalid to give user another chance to pick up the item
-                direction = ""
-    elif len(user_action) == 1:
-        direction += user_action[0]
-
-    # go where the user wants
-    if direction == "q":
-        # If the user enters "q", quit the game.
-        print("Thanks for playing! See you next time.")
-        playing = False
-    elif direction == "n":
-        # If the user enters a cardinal direction, attempt to move to the room there.
-        # check if n_to is there
-        if player.current_room.n_to is not None:
-            player.current_room = player.current_room.n_to
-        else:
-            print("This is a dead end. Try again.")
-    elif direction == "s":
-        # If the user enters a cardinal direction, attempt to move to the room there.
-        # check if s_to is there
-        if player.current_room.s_to is not None:
-            player.current_room = player.current_room.s_to
-        else:
-            print("This is a dead end. Try again.")
-    elif direction == "e":
-        # If the user enters a cardinal direction, attempt to move to the room there.
-        # check if e_to is there
-        if player.current_room.e_to is not None:
-            player.current_room = player.current_room.e_to
-        else:
-            print("This is a dead end. Try again.")
-    elif direction == "w":
-        # If the user enters a cardinal direction, attempt to move to the room there.
-        # check if w_to is there
-        if player.current_room.w_to is not None:
-            player.current_room = player.current_room.w_to
-        else:
-            print("This is a dead end. Try again.")
+    elif user_action[0] == "drop":
+        # if a user wants to drop an item
+        undesired_items.extend(user_action[1:])
+        for undesired_item in undesired_items:
+            player.drop(undesired_item)
     else:
         print("Please input an acceptable response to continue.")

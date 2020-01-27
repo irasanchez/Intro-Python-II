@@ -65,26 +65,26 @@ that are currently in that room.
 [x] Add functionality to the main loop that prints out all the items that are
 visible to the player when they are in that room.
 
-- Add capability to add `Item`s to the player's inventory. The inventory can
-  also be a `list` of items "in" the player, similar to how `Item`s can be in a
-  `Room`.
+[x] Add capability to add `Item`s to the player's inventory. The inventory can
+also be a `list` of items "in" the player, similar to how `Item`s can be in a
+`Room`.
 
-- Add a new type of sentence the parser can understand: two words.
+Add a new type of sentence the parser can understand: two words.
 
-  - Until now, the parser could just understand one sentence form:
+- Until now, the parser could just understand one sentence form:
 
-    `verb`
+  `verb`
 
-    such as "n" or "q".
+  such as "n" or "q".
 
-  - But now we want to add the form:
+- But now we want to add the form:
 
-    `verb` `object`
+  `verb` `object`
 
-    such as "take coins" or "drop sword".
+  such as "take coins" or "drop sword".
 
-  - Split the entered command and see if it has 1 or 2 words in it to determine
-    if it's the first or second form.
+- Split the entered command and see if it has 1 or 2 words in it to determine
+  if it's the first or second form.
 
 - Implement support for the verb `get` followed by an `Item` name. This will be
   used to pick up `Item`s.
